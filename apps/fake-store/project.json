@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/fake-store/src",
   "projectType": "application",
+  "implicitDependencies": ["products", "cart"],
   "targets": {
     "build": {
       "executor": "@nrwl/webpack:webpack",
@@ -18,7 +19,8 @@
         "tsConfig": "apps/fake-store/tsconfig.app.json",
         "assets": [
           "apps/fake-store/src/favicon.ico",
-          "apps/fake-store/src/assets"
+          "apps/fake-store/src/assets",
+          "apps/fake-store/src/netlify.toml"
         ],
         "styles": ["apps/fake-store/src/styles.scss"],
         "scripts": [],
@@ -95,6 +97,13 @@
         "production": {
           "buildTarget": "fake-store:build:production"
         }
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "rm -rf production && mkdir production && cp -r dist/apps/fake-store/* production && cp -r dist/apps/products/* production && cp -r dist/apps/cart/* production && http-server -p 3000 -a localhost production"
       }
     }
   },

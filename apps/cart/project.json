@@ -16,7 +16,7 @@
         "main": "apps/cart/src/main.ts",
         "polyfills": "apps/cart/src/polyfills.ts",
         "tsConfig": "apps/cart/tsconfig.app.json",
-        "assets": ["apps/cart/src/favicon.ico", "apps/cart/src/assets"],
+        "assets": ["apps/cart/src/favicon.ico", "apps/cart/src/assets", "apps/cart/src/netlify.toml"],
         "styles": ["apps/cart/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "apps/cart/webpack.config.js"
