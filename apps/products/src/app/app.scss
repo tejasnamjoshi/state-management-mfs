@@ -1,0 +1,11 @@
+.Products {
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding-top: 3rem;
+  }
+}

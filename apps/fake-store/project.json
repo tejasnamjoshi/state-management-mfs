@@ -1,0 +1,102 @@
+{
+  "name": "fake-store",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/fake-store/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "swc",
+        "outputPath": "dist/apps/fake-store",
+        "index": "apps/fake-store/src/index.html",
+        "baseHref": "/",
+        "main": "apps/fake-store/src/main.ts",
+        "polyfills": "apps/fake-store/src/polyfills.ts",
+        "tsConfig": "apps/fake-store/tsconfig.app.json",
+        "assets": [
+          "apps/fake-store/src/favicon.ico",
+          "apps/fake-store/src/assets"
+        ],
+        "styles": ["apps/fake-store/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/fake-store/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/fake-store/src/environments/environment.ts",
+              "with": "apps/fake-store/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "webpackConfig": "apps/fake-store/webpack.config.prod.js"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "fake-store:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "fake-store:build:development"
+        },
+        "production": {
+          "buildTarget": "fake-store:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fake-store/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/fake-store/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/web:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "fake-store:build",
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "fake-store:build:development"
+        },
+        "production": {
+          "buildTarget": "fake-store:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}
