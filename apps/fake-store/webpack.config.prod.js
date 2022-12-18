@@ -26,8 +26,8 @@ const prodConfig = {
    * ]
    */
   remotes: [
-    ['products', 'http://localhost:3000/products'],
-    ['cart', 'http://localhost:3000/cart']
+    ['products', 'https://639f27971f184e0a043a2bbc--marvelous-tiramisu-c61116.netlify.app'],
+    ['cart', 'https://639f27b59c18df152ac83c47--fastidious-florentine-15cb78.netlify.app/']
   ],
 };
 
